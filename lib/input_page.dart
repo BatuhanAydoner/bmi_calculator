@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'reusable_card.dart';
+import 'icon_content.dart';
 
 const bottomContainerHeight = 80.0;
-const customColor = Color(0xFF1D1E33);
+const activeCardColor = Color(0xFF1D1E33);
 const buttonColor = Color(0xFFEB1555);
 
 class InputAge extends StatefulWidget {
@@ -23,17 +27,32 @@ class _InputAgeState extends State<InputAge> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(color: customColor)),
-                Expanded(child: ReusableCard(color: customColor)),
+                Expanded(
+                  child: ReusableCard(
+                    color: activeCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      description: "MALE",
+                    ),
+                  ),
+                ),
+                Expanded(
+                    child: ReusableCard(
+                  color: activeCardColor,
+                  cardChild: IconContent(
+                    icon: FontAwesomeIcons.venus,
+                    description: "FEMALE",
+                  ),
+                )),
               ],
             ),
           ),
-          Expanded(child: ReusableCard(color: customColor)),
+          Expanded(child: ReusableCard(color: activeCardColor)),
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(color: customColor)),
-                Expanded(child: ReusableCard(color: customColor)),
+                Expanded(child: ReusableCard(color: activeCardColor)),
+                Expanded(child: ReusableCard(color: activeCardColor)),
               ],
             ),
           ),
@@ -49,50 +68,3 @@ class _InputAgeState extends State<InputAge> {
     );
   }
 }
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150.0,
-      margin: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-          color: color, borderRadius: BorderRadius.circular(15.0)),
-    );
-  }
-}
-
-/*
-* Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(child: ReusableCard(color: Color(0xFF1D1E33))),
-                Expanded(child: ReusableCard(color: Color(0xFF1D1E33))),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Expanded(child: ReusableCard(color: Color(0xFF1D1E33))),
-          ),
-          Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(child: ReusableCard(color: Color(0xFF1D1E33))),
-                Expanded(child: ReusableCard(color: Color(0xFF1D1E33))),
-              ],
-            ),
-          ),
-          Container(
-            color: Color(0xFFEB1555),
-            width: double.infinity,
-            child: FlatButton(
-                onPressed: () {},
-                child: Center(
-                  child: Text("Calculate BMI"),
-                )),
-          )
-        */
