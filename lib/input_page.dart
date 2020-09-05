@@ -18,6 +18,8 @@ class _InputPageState extends State<InputPage> {
   Color _femaleCardColor = kInactiveCardColor;
 
   double _currentSliderValue = 180;
+  int _weight = 60;
+  int _age = 18;
 
   void _updateColor(GenderName gender) {
     _maleCardColor =
@@ -122,8 +124,80 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(color: kActiveCardColor)),
-                Expanded(child: ReusableCard(color: kActiveCardColor)),
+                Expanded(
+                    child: ReusableCard(
+                  color: kActiveCardColor,
+                  cardChild: Column(
+                    children: <Widget>[
+                      Text(
+                        "WEIGHT",
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        _weight.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RoundIconButton(
+                            iconData: FontAwesomeIcons.minus,
+                            pressed: () {
+                              setState(() {
+                                _weight++;
+                              });
+                            },
+                          ),
+                          RoundIconButton(
+                            iconData: FontAwesomeIcons.plus,
+                            pressed: () {
+                              setState(() {
+                                _weight--;
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
+                Expanded(
+                    child: ReusableCard(
+                  color: kActiveCardColor,
+                  cardChild: Column(
+                    children: <Widget>[
+                      Text(
+                        "AGE",
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        _age.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RoundIconButton(
+                            iconData: FontAwesomeIcons.minus,
+                            pressed: () {
+                              setState(() {
+                                _age++;
+                              });
+                            },
+                          ),
+                          RoundIconButton(
+                            iconData: FontAwesomeIcons.plus,
+                            pressed: () {
+                              setState(() {
+                                _age--;
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
               ],
             ),
           ),
@@ -135,6 +209,30 @@ class _InputPageState extends State<InputPage> {
             child: FlatButton(onPressed: () {}, child: Text("CALCULATE BMI")),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({this.iconData, this.pressed});
+
+  final IconData iconData;
+  final Function pressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 6.0,
+      splashColor: Colors.red,
+      disabledElevation: 6.0,
+      onPressed: pressed,
+      fillColor: Color(0xFF4C4F5E),
+      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      shape: CircleBorder(),
+      child: Icon(
+        iconData,
+        size: 20.0,
       ),
     );
   }
