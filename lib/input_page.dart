@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'constants.dart';
@@ -16,7 +17,7 @@ class _InputPageState extends State<InputPage> {
   Color _maleCardColor = kInactiveCardColor;
   Color _femaleCardColor = kInactiveCardColor;
 
-  double _currentSliderValue = 170;
+  double _currentSliderValue = 180;
 
   void _updateColor(GenderName gender) {
     _maleCardColor =
@@ -74,12 +75,9 @@ class _InputPageState extends State<InputPage> {
             cardChild: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "HEIGHT",
-                    style: TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98)),
-                  ),
+                Text(
+                  "HEIGHT",
+                  style: TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98)),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -96,19 +94,28 @@ class _InputPageState extends State<InputPage> {
                     )
                   ],
                 ),
-                Slider(
-                    inactiveColor: Color(0xFF8D8E98),
-                    activeColor: Colors.red,
-                    value: _currentSliderValue,
-                    min: 10,
-                    max: 200,
-                    divisions: 190,
-                    label: _currentSliderValue.round().toString(),
-                    onChanged: (double value) {
-                      setState(() {
-                        _currentSliderValue = value;
-                      });
-                    })
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      trackHeight: 1.0,
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 30.0),
+                      thumbColor: Color(0xFFEB1555),
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: Color(0xFF8D8E98)),
+                  child: Slider(
+                      value: _currentSliderValue,
+                      min: 110,
+                      max: 220,
+                      divisions: 190,
+                      label: _currentSliderValue.round().toString(),
+                      onChanged: (double value) {
+                        setState(() {
+                          _currentSliderValue = value;
+                        });
+                      }),
+                )
               ],
             ),
           )),
@@ -126,7 +133,7 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10.0),
             height: kBottomContainerHeight,
             child: FlatButton(onPressed: () {}, child: Text("CALCULATE BMI")),
-          )
+          ),
         ],
       ),
     );
