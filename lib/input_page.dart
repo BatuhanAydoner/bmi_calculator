@@ -79,7 +79,7 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Text(
                   "HEIGHT",
-                  style: TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98)),
+                  style: kLabelTextStyle,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +144,7 @@ class _InputPageState extends State<InputPage> {
                             iconData: FontAwesomeIcons.minus,
                             pressed: () {
                               setState(() {
-                                _weight++;
+                                _weight--;
                               });
                             },
                           ),
@@ -152,7 +152,7 @@ class _InputPageState extends State<InputPage> {
                             iconData: FontAwesomeIcons.plus,
                             pressed: () {
                               setState(() {
-                                _weight--;
+                                _weight++;
                               });
                             },
                           )
@@ -181,7 +181,7 @@ class _InputPageState extends State<InputPage> {
                             iconData: FontAwesomeIcons.minus,
                             pressed: () {
                               setState(() {
-                                _age++;
+                                _age--;
                               });
                             },
                           ),
@@ -189,7 +189,7 @@ class _InputPageState extends State<InputPage> {
                             iconData: FontAwesomeIcons.plus,
                             pressed: () {
                               setState(() {
-                                _age--;
+                                _age++;
                               });
                             },
                           )
@@ -223,7 +223,7 @@ class RoundIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      elevation: 6.0,
+      elevation: 0.0,
       splashColor: Colors.red,
       disabledElevation: 6.0,
       onPressed: pressed,
