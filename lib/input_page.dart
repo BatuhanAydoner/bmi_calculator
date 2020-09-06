@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'bottom_button.dart';
 import 'constants.dart';
 import 'reusable_card.dart';
 import 'icon_content.dart';
@@ -202,22 +203,12 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          BottomButton(
+            buttonTitle: "BMI CALCULATOR",
+            page: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ResultsPage()));
             },
-            child: Container(
-              color: kButtonColor,
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              margin: EdgeInsets.only(top: 10.0),
-              child: Center(
-                  child: Text(
-                "CALCULATE BMI",
-                style: kLargeButtonTextStyle,
-              )),
-            ),
           ),
         ],
       ),
