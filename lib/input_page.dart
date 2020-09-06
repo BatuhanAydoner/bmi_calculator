@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/round_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -204,37 +205,13 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           BottomButton(
-            buttonTitle: "BMI CALCULATOR",
+            buttonTitle: "CALCULATE",
             page: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ResultsPage()));
             },
           ),
         ],
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.iconData, this.pressed});
-
-  final IconData iconData;
-  final Function pressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0.0,
-      splashColor: Colors.red,
-      disabledElevation: 6.0,
-      onPressed: pressed,
-      fillColor: Color(0xFF4C4F5E),
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: CircleBorder(),
-      child: Icon(
-        iconData,
-        size: 20.0,
       ),
     );
   }
