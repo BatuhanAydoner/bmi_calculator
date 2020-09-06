@@ -1,10 +1,15 @@
-import 'package:bmi_calculator/bottom_button.dart';
-import 'package:bmi_calculator/reusable_card.dart';
+import 'file:///C:/Users/batuh/FlutterProjects/bmi_calculator/lib/components/bottom_button.dart';
+import 'file:///C:/Users/batuh/FlutterProjects/bmi_calculator/lib/components/reusable_card.dart';
+import 'package:bmi_calculator/calculate_brain.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage({@required this.calculatorBrain});
+
+  final CalculatorBrain calculatorBrain;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +26,8 @@ class ResultsPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(15.0),
+              alignment: Alignment.bottomLeft,
               child: Text(
                 "YOUR RESULT",
                 style: kTitleTextStyle,
@@ -37,17 +43,17 @@ class ResultsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "OVERWEIGHT",
+                      calculatorBrain.getResult(),
                       style: kResultTextStyle,
                     ),
                     Text(
-                      "28.4",
+                      calculatorBrain.calculateBMI(),
                       style: kBMITextStyle,
                     ),
                     Container(
                       padding: EdgeInsets.all(5.0),
                       child: Text(
-                        "You have a higher than normal body weight. Try to exercise more.",
+                        calculatorBrain.getInterpretation(),
                         style: kBodyTextStyle,
                         textAlign: TextAlign.center,
                       ),
